@@ -16,10 +16,12 @@ return new class extends Migration
             $table->string('inicio');
             $table->string('fim');
             $table->string('nivel');
-            $table->rememberToken();
+            $table->unsignedBigInteger('docentes_id'); // Foreign key reference
+            $table->foreign('docentes_id')->references('id')->on('docentes');
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.

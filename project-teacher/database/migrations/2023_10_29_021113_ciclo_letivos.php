@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ciclo_letivo', function (Blueprint $table) {
+        Schema::create('ciclo_letivos', function (Blueprint $table) {
             $table->id();
             $table->string('ano');
             $table->string('semestre');

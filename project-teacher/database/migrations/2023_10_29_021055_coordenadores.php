@@ -15,10 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('inicio');
             $table->string('fim');
-            $table->rememberToken();
+            $table->unsignedBigInteger('docentes_id'); // Foreign key reference to docentes table
+            $table->unsignedBigInteger('cursos_id');   // Foreign key reference to cursos table
+            $table->foreign('docentes_id')->references('id')->on('docentes');
+            $table->foreign('cursos_id')->references('id')->on('cursos');
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.

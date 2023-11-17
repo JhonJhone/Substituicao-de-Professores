@@ -31,9 +31,6 @@ CREATE TABLE IF NOT EXISTS `mydb`.`users` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
-CREATE UNIQUE INDEX `login_UNIQUE` ON `mydb`.`users` (`login` ASC) VISIBLE;
-
-
 -- -----------------------------------------------------
 -- Table `mydb`.`docentes`
 -- -----------------------------------------------------
@@ -46,9 +43,6 @@ CREATE TABLE IF NOT EXISTS `mydb`.`docentes` (
   `users_id` INT NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
-
-CREATE INDEX `fk_docentes_users_idx` ON `mydb`.`docentes` (`users_id` ASC) VISIBLE;
-
 
 -- -----------------------------------------------------
 -- Table `mydb`.`chefias`
@@ -63,9 +57,6 @@ CREATE TABLE IF NOT EXISTS `mydb`.`chefias` (
   `docentes_id` INT NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
-
-CREATE INDEX `fk_chefias_docentes1_idx` ON `mydb`.`chefias` (`docentes_id` ASC) VISIBLE;
-
 
 -- -----------------------------------------------------
 -- Table `mydb`.`cursos`
@@ -93,11 +84,6 @@ CREATE TABLE IF NOT EXISTS `mydb`.`coordenadores` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_coordenadores_docentes1_idx` ON `mydb`.`coordenadores` (`docentes_id` ASC) VISIBLE;
-
-CREATE INDEX `fk_coordenadores_cursos1_idx` ON `mydb`.`coordenadores` (`cursos_id` ASC) VISIBLE;
-
-
 -- -----------------------------------------------------
 -- Table `mydb`.`turmas`
 -- -----------------------------------------------------
@@ -109,9 +95,6 @@ CREATE TABLE IF NOT EXISTS `mydb`.`turmas` (
   `cursos_id` INT NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
-
-CREATE INDEX `fk_turmas_cursos1_idx` ON `mydb`.`turmas` (`cursos_id` ASC) VISIBLE;
-
 
 -- -----------------------------------------------------
 -- Table `mydb`.`disciplinas`
@@ -153,11 +136,6 @@ CREATE TABLE IF NOT EXISTS `mydb`.`docentes_ciclos_letivos` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_docentes_ciclos_letivos_ciclo_letivos1_idx` ON `mydb`.`docentes_ciclos_letivos` (`ciclo_letivos_id` ASC) VISIBLE;
-
-CREATE INDEX `fk_docentes_ciclos_letivos_disciplinas1_idx` ON `mydb`.`docentes_ciclos_letivos` (`disciplinas_id` ASC) VISIBLE;
-
-
 -- -----------------------------------------------------
 -- Table `mydb`.`ofertas`
 -- -----------------------------------------------------
@@ -171,15 +149,6 @@ CREATE TABLE IF NOT EXISTS `mydb`.`ofertas` (
   `disciplinas_id` INT NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
-
-CREATE INDEX `fk_ofertas_docentes1_idx` ON `mydb`.`ofertas` (`docentes_id` ASC) VISIBLE;
-
-CREATE INDEX `fk_ofertas_turmas1_idx` ON `mydb`.`ofertas` (`turmas_id` ASC) VISIBLE;
-
-CREATE INDEX `fk_ofertas_ciclo_letivos1_idx` ON `mydb`.`ofertas` (`ciclo_letivos_id` ASC) VISIBLE;
-
-CREATE INDEX `fk_ofertas_disciplinas1_idx` ON `mydb`.`ofertas` (`disciplinas_id` ASC) VISIBLE;
-
 
 -- -----------------------------------------------------
 -- Table `mydb`.`solicitacoes`
@@ -205,18 +174,3 @@ CREATE TABLE IF NOT EXISTS `mydb`.`solicitacoes` (
   `coordenadores_id` INT NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
-
-CREATE INDEX `fk_solicitacoes_ciclo_letivos1_idx` ON `mydb`.`solicitacoes` (`ciclo_letivos_id` ASC) VISIBLE;
-
-CREATE INDEX `fk_solicitacoes_disciplinas1_idx` ON `mydb`.`solicitacoes` (`disciplinas_id` ASC) VISIBLE;
-
-CREATE INDEX `fk_solicitacoes_turmas1_idx` ON `mydb`.`solicitacoes` (`turmas_id` ASC) VISIBLE;
-
-CREATE INDEX `fk_solicitacoes_chefias1_idx` ON `mydb`.`solicitacoes` (`chefias_id` ASC) VISIBLE;
-
-CREATE INDEX `fk_solicitacoes_coordenadores1_idx` ON `mydb`.`solicitacoes` (`coordenadores_id` ASC) VISIBLE;
-
-
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
